@@ -2,14 +2,452 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href=https://tanawa.github.io/bot-chat-thk/botchat-style.css>
-<script src="https://tanawa.github.io/bot-chat-thk/bot-chat.js"></script> 
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+		@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;800&display=swap');
+		::-webkit-scrollbar{
+			width: 0;
+		}
+		html,body{
+			font-family: 'Prompt', sans-serif;
+			margin:0;
+			padding: 0;
+			height:100%;
+		}
+		.login{
+
+		}
+		.login_box{
+			width:400px;
+			margin-left: 120px;
+			margin-top: 5%;
+			border:1px solid #FFF;
+			display: flex;
+			flex-direction: column;
+			padding: 20px 25px;
+			box-shadow: 0px 0px 20px 0px #DDD;
+			border-radius:15px;
+			text-align: center;
+		}
+		.login_box>div>button{
+			border-radius: 25px;
+			font-family: 'Prompt', sans-serif;
+			padding: 10px 10px;
+			width:200px;
+			color:#fff;
+			outline:none;
+			margin-top:15px;
+			margin-bottom: 15px;
+			background-color: #57606f;
+			box-shadow: 0px 5px 0px 0px #2f3542;
+			border:2px solid #2f3542;
+		}
+		.login_box>div>button:hover{
+			margin-top:18px;
+			margin-bottom: 12px;
+			box-shadow: 0px 1px 0px 0px #2f3542;
+		}
+		.input_login{
+			border-left:5px solid #2f3542; 
+			margin-bottom:10px;
+			margin-left: 100px;
+			text-align: left;
+		}
+		.input_login>input{
+			color:#2f3542;
+			font-family: 'Prompt', sans-serif;
+			outline:none;
+			padding: 5px 15px;
+			border:1px solid transparent;
+		}
+		p{
+			display: inline-block;
+			position: relative;
+		}
+		i{	
+			position: absolute;
+			margin-top: 10px;
+		}
+		.main{
+			width: 100%;
+			height: 100%;
+		}
+		.element{
+			display: flex;
+			flex-direction:row;
+			width: 100%;
+			height: 100%;
+		}
+		.content{
+			overflow: scroll;
+			background-color: #FFF;
+			display: block;
+			width: 70%;
+			height: 100%;
+			padding-left: 5%;
+		}
+		.about{
+			padding-left: 20px;
+			background-color: #222;
+			display: block;
+			width: 30%;
+			height: 100%;
+			color:#fff;
+		}
+		.about>p{
+			font-size:12px;
+			display: block;
+		}
+		.about>hr{
+			opacity: 0.2;
+			display: block;
+			float: left;
+			width: 80%;
+			border:1px solid #DDD;
+		}
+		.about>a{
+			font-size:12px;
+			display: inline-block;
+			padding-left: 5px;
+			border-left:3px solid #FFF;
+		}
+		.board{
+			background-color: #FFF;
+			width: 90%;
+			margin-top: 2%;
+			border-radius: 15px;
+			box-shadow: 0px 0px 15px 0px #DDD;
+		}
+		.board>p{
+			margin-left: 10%;
+			font-weight: bold;
+		}
+		.board>a{
+			right: 0;
+		}
+		.chatboard{
+			width: 100%;
+			height: 100%;
+		}
+		.screenChat{
+			padding-top: 10px;
+			height: 90%;
+		}
+		.inputChat{
+			font-family: 'Prompt', sans-serif;
+			position: fixed;
+			width: 100%;
+			background-color:#fff; 
+			bottom: 0;
+			text-align: center;
+			box-shadow: 0px 0px 15px 0px #DDD;
+		}
+		.inputChat>input{
+			font-family: 'Prompt', sans-serif;
+			width: 200px;
+			padding: 10px 25px;
+			height: 10px;
+			border-radius:25px;
+			border:1px solid #DDD;
+			margin:15px;
+			outline: none;
+		}
+		.inputChat>button{
+			border-radius: 25px;
+			font-family: 'Prompt', sans-serif;
+			font-size:9px;
+			padding: 10px;
+			color:#fff;
+			outline:none;
+			margin-top:1px;
+			margin-bottom: 4px;
+			background-color: #57606f;
+			border:2px solid #2f3542;
+		}
+		.inputChat>button:hover{
+			transform:scale(0.9,0.9);
+		}
+		.footer{
+			position: absolute;
+			width: 60%;
+			bottom: 0;
+			height: 45px;
+			border-radius:25px 25px 25px 25px;
+			background-color: #FFF;
+			box-shadow: 0px 0px 25px 0px #DDD;
+		}
+		.footer>input{
+			outline:none;
+			padding: 5px;
+			margin-left: 5px;
+			margin-top: 5px;
+			border-radius:15;
+			border:1px solid #DDD;
+			width: 65%;
+			border:2px solid #DDD;
+			border-radius: 25px;
+			font-family: 'Prompt', sans-serif;
+		}
+		.footer>button{
+			width: 20%;
+			margin-left: 10px;
+			border-radius: 25px;
+			font-family: 'Prompt', sans-serif;
+			font-size:12px;
+			padding: 10px;
+			transform: scale(0.8,0.8);
+			color:#fff;
+			outline:none;
+			margin-top:1px;
+			margin-bottom: 4px;
+			background-color: #57606f;
+			border:2px solid #2f3542;
+		}
+		.chat{
+			padding: 10px 25px;
+			margin-left: 10px;
+			width:50%;
+			left:0;
+			background-color: #FFF;
+			border-radius: 0px 0px 15px 0px;
+		}
+		.chatT{
+			border-radius:25px 25px 25px 0px;
+			padding: 10px 25px;
+			margin-left: 10px;
+			width:50%;
+			right: 0;
+			background-color: #57606f;
+			color:#fff;
+		}
+		.chat>a{
+			font-size:9px;
+		}
+		.chatT>a{
+			font-size:9px;
+		}
+		#inputboard{
+			
+		}
+	</style>
+	<script
+  		src="https://code.jquery.com/jquery-3.5.1.js"
+  		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  		crossorigin="anonymous">
+  	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.1.5/js/emoji-picker.js"></script>
 </head>
 <body>
-<center>
-<h1 id=”output”>ระบบ : ยินดีต้อนรับ</h1>
-<input type="text" id="input">
-<button onclick="processing()">ส่ง</button>
-</center>
+
+	<div class="login">
+		<div class="login_box">
+			<h1>Thk WebBoard</h1>
+			<div class="input_login">
+				<input type="text" name="" placeholder="เลขบัตรประชาชน" id="numberP">	
+			</div>
+			<div class="input_login">
+				<input type="text" name="" placeholder="เลขประจำตัวนักเรียน" id="numberT">	
+			</div>
+			<div>
+				<button onclick="login_firebase()">
+					<p>เข้าสู่ระบบ&nbsp;</p>
+					<i class="material-icons">vpn_key</i>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="main">
+		<div class="element">
+			<div class="content">
+				<div class="footer">
+					<input type="text" name="" id="inputboard"><button onclick="createBoard()">สร้างกระทู้</button>
+				</div>
+			</div>
+			<div class="about">
+				<br>
+				<a>ชื่อ</a>
+				<p id="namestudent">ss</p>
+				<hr>
+				<a>เลขประจำตัวนักเรียน</a>
+				<p id="numberstudent">ss</p>
+				<hr>
+				<a>ระดับการศึกษา</a><p id="classstudent">ss</p>
+			</div>
+		</div>
+		<div class="chatboard">
+			<div class="screenChat">
+				
+			</div>
+			<div class="inputChat">
+				<input type="text" name="" id="sendChat">
+				<button onclick="send()">
+					ส่งข้อความ
+				</button>
+				<button class="picker">
+					อิโมจิ
+				</button>
+			</div>
+		</div>
+	</div>
+	<link href="jquery.lsxemojipicker.css" rel="stylesheet">
+	<script src="jquery.lsxemojipicker.js"></script>
+	<script src="https://twemoji.maxcdn.com/2/twemoji.min.js"></script>
+    <script>
+        $('.picker').lsxEmojiPicker({
+            closeOnSelect: true,
+            twemoji: true,
+            onSelect: function(emoji){
+                console.log(emoji);
+            }
+        });
+	</script>
+	<script>
+		
+ 		var firebaseConfig = {
+    		apiKey: "AIzaSyBqXCZI7Nd4c7uLlptRgD1QehFh2iX80xQ",
+    		authDomain: "flower-31854.firebaseapp.com",
+    		databaseURL: "https://flower-31854.firebaseio.com",
+    		projectId: "flower-31854",
+    		storageBucket: "flower-31854.appspot.com",
+    		messagingSenderId: "246343091070",
+    		appId: "1:246343091070:web:cc8a1655946c3e6524a92f"
+  		};
+  		firebase.initializeApp(firebaseConfig);
+  		var ref=firebase.database().ref("THK_001");
+  		var username="";
+  		var about=[];
+  		var start=true;
+  		var loginSuccess=false;
+  		var historyBox=[];
+  		var nameChat="";
+  		var chatload=true;
+  		var teacher=false;
+  		ScreenPage(loginSuccess);
+  		openChat(false);
+  		function login_firebase(){
+  			const numberP=$("#numberP").val();
+  			const numberT=$("#numberT").val();
+  			if(numberT.trim()!=""&&numberP.trim()!=""){
+  				console.log(numberP+":"+numberT);
+  				ref=firebase.database().ref("THK_001/user/"+numberP);
+  				ref.once("value",function(snapshot){
+  					if(snapshot.val()[1]==numberT){
+  						loginSuccess=true;
+  						username=snapshot.val()[3]+snapshot.val()[2];
+  						about=snapshot.val();
+  						$("#namestudent").text(username);
+  						$("#numberstudent").text(about[1]);
+  						$("#classstudent").text(about[5]+"/"+about[6]);
+  						ScreenPage(loginSuccess);
+  						teacher=about[7]!=undefined;
+  					}
+  				},function(err){
+
+  				});
+  			}
+  			$("#numberP").val("");
+  			$("#numberT").val("");
+  		}
+  		function ScreenPage(login){
+  			if(login){
+  				$(".login").hide();
+  				$(".main").show();
+  			}else{
+  				$(".login").show();
+  				$(".main").hide();
+  			}
+  		}
+  		
+  		function openChat(para){
+  			if(para){
+  				$(".element").hide();
+  				$(".chatboard").show();
+  			}else{
+  				$(".element").show();
+  				$(".chatboard").hide();
+  			}
+  		}
+  		function send(){
+  			let message=$("#sendChat").val();
+  			let d=new Date();
+  			let date=d.getDay()+"/"+d.getMonth()+"/"+d.getFullYear();
+  			let time=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+  			if(message!=""){
+  				ref=firebase.database().ref("THK_001/board/"+nameChat+"/สนทนา");
+  				ref.once("value",function(snapshot){
+  					let arr=snapshot.val();
+  					ref=firebase.database().ref("THK_001/board/"+nameChat);
+  					arr.push([message,username,date,time,teacher])
+  					ref.child("สนทนา").set(arr);
+  				});
+  			}
+  		}
+  		function createBoard(){
+  			let NameS=$("#namestudent").text();
+  			let NumberS=$("#numberstudent").text();
+  			let ClassS=$("#classstudent").text();
+  			let InputBoard=$("#inputboard").val();
+  			let d=new Date();
+  			let date=d.getDay()+"/"+d.getMonth()+"/"+d.getFullYear();
+  			let time=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+  			if(InputBoard.trim()!=""){
+  				ref=firebase.database().ref("THK_001/board/"+InputBoard);
+  				ref.once("value",function(snapshot){
+  					if(snapshot.val()==null){
+  						ref.child("คนสร้าง").set(NameS+" "+ClassS);
+  						ref.child("เวลา").set(date+" เวลา "+time)
+  						ref.child("สนทนา").set([[InputBoard,NameS,date,time]])
+  					}
+  				});
+  			}  			
+  		}
+  		ref=firebase.database().ref("THK_001/board");
+  		ref.on("value",function(snapshot){
+  			let arr=Object.keys(snapshot.val());
+  			if(start){
+  				start=false;
+  				arr.forEach(createbox);
+  			}else{
+  				arr=Object.keys(snapshot.val());
+  				if(!historyBox.includes(arr[arr.length-1])){
+  					createbox(arr[arr.length-1],arr.length-1);
+  				}
+  				
+  			}
+  		});
+
+  		function createbox(item,index){
+  			console.log(item);
+  			historyBox.push(item);
+  			$(".content").prepend("<div class=\"board\" onclick=\"openChatview('"+item+"')\"><p>"+item+"</p></div>");
+  		}
+
+  		function openChatview(text){
+  			console.log(text);
+  			openChat(true);
+  			nameChat=text;
+  			chatload=true;
+  			ref=firebase.database().ref("THK_001/board/"+text+"/สนทนา");
+  			ref.on("value",function(snapshot){
+  				let arr=snapshot.val();
+  				if(chatload){
+  					arr.forEach(createBoxchat);
+  				}else{
+  					createBoxchat(arr[arr.length-1],arr.length-1);
+  				}
+  			});
+  		}
+  		function createBoxchat(item,index){
+  			if(item[4]!=undefined && item[4]==true){
+  				$(".screenChat").prepend("<div class=\"chatT\"><h4>"+item[0]+"</h4><a>ส่งโดย"+item[1]+" วัน"+item[2]+"เวลา"+item[3]+"</a></div>");
+  			}else if(item[4]==undefined || item[4]==false){
+  				$(".screenChat").prepend("<div class=\"chat\"><h4>"+item[0]+"</h4><a>ส่งโดย"+item[1]+" วัน"+item[2]+"เวลา"+item[3]+"</a></div>");
+  			}
+  			
+  		}
+	</script>
 </body>
 </html>
